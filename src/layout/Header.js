@@ -20,7 +20,7 @@ const BottomNav = [
 
 class Header extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             tag: '',
             redirect:false
@@ -28,7 +28,7 @@ class Header extends React.Component {
     }
 
     componentDidMount() {
-        const search = queryString.parse(( this.props &&  this.props.history && this.props.history.location.search) || '')
+        const search = queryString.parse(( this.props &&  this.props.history && this.props.history.location.search) || '');
         this.setState({
             tag: search.tag
         })
@@ -41,11 +41,11 @@ class Header extends React.Component {
     }
 
     onEnter = async(event) => {
-        const {tag} = this.state
+        const {tag} = this.state;
         if(event.charCode === 13) {
-            const result = await serchVideo(tag)
-            this.setState({redirect:true})
-            this.props.history.push(`/?tag=${tag}`)
+            const result = await serchVideo(tag);
+            this.setState({redirect:true});
+            this.props.history.push(`/?tag=${tag}`);
         }
     };
 
@@ -98,7 +98,7 @@ class Header extends React.Component {
                                     path  === "Popular category's"
                                         ? "Popular category's"  :  path === "Top Singer"
                                         ? "Top Singer"  :  path === "Top Actors & Actresses"
-                                            ? "Top Actors & Actresses" : "Categories"
+                                        ? "Top Actors & Actresses" : "Categories"
                                 }
                             </a>
                             <div

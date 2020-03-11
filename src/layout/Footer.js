@@ -20,7 +20,7 @@ const Footer = () => {
                             <div className="app">
                                 <a href="/">
                                     <img alt="logo" src="https://www.videostatusmarket.com/static/images/google.png"/>
-                                </a>
+                                </a>&nbsp;
                                 <a href="/">
                                     <img alt="apple logo" src="https://askbootstrap.com/preview/vidoe-v1-2/theme-six/img/apple.png"/>
                                 </a>
