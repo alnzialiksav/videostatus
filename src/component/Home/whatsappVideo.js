@@ -1,6 +1,6 @@
 import React from "react"
 import Languages from "../../layout/Languages";
-import {getVideos, serchVideo} from "../../actions";
+import {getVideos, searchVideo} from "../../actions";
 import {Loader} from "../../globalutilities/Loader";
 import WhatsAppVideoStatus from "../Common/WhatsappVideoStatus";
 
@@ -23,7 +23,7 @@ class WhatsAppVideo extends React.Component {
         const search = this.props.location.search.split("=").pop()
         this.setState({loaded:true},async ()=>{
             this.fetchVideos();
-            const result = await serchVideo(search);
+            const result = await searchVideo(search);
             if(result && result.payload && result.payload.videos.length){
                 this.setState({
                     list: result.payload && result.payload.videos || []
@@ -40,7 +40,7 @@ class WhatsAppVideo extends React.Component {
         if(prevProps.location.search !== this.props.location.search){
             const search = this.props.location.search.split("=").pop()
             this.fetchVideos();
-            const result = await serchVideo(search)
+            const result = await searchVideo(search)
             if(result && result.payload && result.payload.videos.length){
                 this.setState({
                     list: result.payload && result.payload.videos || []
@@ -59,7 +59,7 @@ class WhatsAppVideo extends React.Component {
             if (window.scrollY > this.state.scrollLength) {
                 this.setState({
                     scrollLength:window.scrollY,
-                    pageSize: this.state.pageSize + 5
+                    pageSize: this.state.pageSize + 2
                 }, () => {
                     this.fetchVideos();
                 })
@@ -92,9 +92,9 @@ class WhatsAppVideo extends React.Component {
         return (
             <>
                 <Languages/>
-                <h5>Daily New Video, Fast Download, Small Size, Trending Video, Quick Share, Smart Search, Video
+                <h5 className="customColor">Daily New Video, Fast Download, Small Size, Trending Video, Quick Share, Smart Search, Video
                     Languages, Quotes Categories</h5>
-                <div style={{textAlign: "justify"}}>
+                <div style={{textAlign: "justify",color:"inherit"}}>
                     Check out our other status collections. we have added many different types of videos that you can
                     download on your mobile device. Fullscreen romantic status video is very popular other than that you
                     can suggest any categories or new videos. We are updating homepage videos daily so visit regular our
@@ -105,7 +105,7 @@ class WhatsAppVideo extends React.Component {
                 <div className="video-block section-padding">
                     <div className="row">
                         <div className="col-md-12">
-                            <div className="main-title">
+                            <div className="main-title customColor">
                                 <div className="btn-group float-right right-action">
                                 </div>
                                 <h6>Best whatsapp video Status</h6>
@@ -150,9 +150,9 @@ class WhatsAppVideo extends React.Component {
                         }
                     </div>
                 </div>
-                <h1> Full Screen Video Status Best WhatsApp Status Video Download </h1>
+                <h1 className="customColor"> Full Screen Video Status Best WhatsApp Status Video Download </h1>
                 <br/>
-                <div style={{textAlign: "justify"}}>
+                <div style={{textAlign: "justify",color:"inherit"}}>
                     <p>Fullscreen video Status is a popular trend in Indian people. New full-screen WhatsApp status
                         video highlights loving animation and lyrical video that's the reason why Fullscreen status
                         loves so many people. Gone the time when you used to keep different video status apps for

@@ -1,5 +1,5 @@
 import React from "react"
-import {serchVideo} from '../actions'
+import {searchVideo} from '../actions'
 const queryString = require('query-string');
 
 
@@ -11,7 +11,7 @@ const categories = [
 const BottomNav = [
     {path:"/",icon:"fas fa-home",name:"Home"},
     {path:"?tag=new",icon:"fas fa-clock",name:"New"},
-    {path:"/?tag=",icon:"fas fa-fire",name:"Popular"},
+    {path:"/popular",icon:"fas fa-fire",name:"Popular"},
     {path:"/category/all",icon:"fas fa-th-large",name:"Category"}
 ];
 
@@ -42,7 +42,7 @@ class Header extends React.Component {
     onEnter = async(event) => {
         const {tag} = this.state;
         if(event.charCode === 13) {
-            const result = await serchVideo(tag);
+            const result = await searchVideo(tag);
             this.setState({redirect:true});
             this.props.history.push(`/?tag=${tag}`);
         }

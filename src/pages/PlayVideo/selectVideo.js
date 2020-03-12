@@ -21,7 +21,7 @@ class SelectVideo extends React.Component{
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevState._id !== this.props.location.pathname.split("/")[2]){
+        if(prevProps.location.pathname !== this.props.location.pathname){
             const path = this.props.location.pathname.split("/");
             this.setState({_id:path[2]},async()=>{
                 await this.fetVideo()
@@ -32,8 +32,9 @@ class SelectVideo extends React.Component{
     fetVideo =  async () => {
         const { _id } = this.state;
         const res = await findVideoById(_id);
-        if(res && res.success && res.payload && res.payload.videos){
-            const data = res.payload.videos[0];
+        debugger
+        if(res && res.success && res.payload && res.payload.video){
+            const data = res.payload.video;
             const videourl = data.url;
             const array = videourl.split(".");
             const extension = array[array.length - 1];
@@ -45,6 +46,8 @@ class SelectVideo extends React.Component{
                 tag:data.tags,
                 videoId:data.url
             })
+        }else{
+            this.props.history.goBack()
         }
     };
     render() {

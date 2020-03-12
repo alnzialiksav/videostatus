@@ -2,7 +2,7 @@ import React from "react"
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Pages from "../../component/Common/pages";
-import { serchVideo } from "../../actions";
+import { searchVideo,getPopular } from "../../actions";
 import { Loader } from "../../globalutilities/Loader";
 
 
@@ -14,26 +14,28 @@ class Categories extends React.Component {
             videos: [],
             page: 1,
             totalVideos: 0,
-            title:this.props.history.location.pathname.substring(1),
+            title:this.props.history.location.pathname.substring(1) || "",
             pages: 0,
             pageSize: 10,
+            scrollLength:0
         }
     }
 
-    componentDidMount() {
-        console.log(this.state.title)
+     componentDidMount = async () =>{
+        // console.log(this.state.title);
         this.fetchVideos();
         this.prev = window.scrollY;
         window.addEventListener('scroll', e => this.handleScroll(e));
-    }
+    };
 
     handleScroll = (e) => {
         const window = e.currentTarget;
         if (this.prev < window.scrollY) {
-            if (window.scrollY > 300) {
+            if (window.scrollY > this.state.scrollLength) {
                 this.setState({
-                    pageSize: this.state.pageSize + 5
-                }, () => {
+                    pageSize: this.state.pageSize + 5,
+                    scrollLength:window.scrollY
+                }, async () => {
                     this.fetchVideos();
                 })
             }
@@ -41,19 +43,30 @@ class Categories extends React.Component {
         this.prev = window.scrollY;
     };
 
+    setPages = (result) => {
+        const {videos, page, totalVideos, pages} = result.payload;
+        this.setState({
+            loading: false,
+            videos: videos || [],
+            page: page+1,
+            totalVideos: totalVideos,
+            pages: pages,
+        })
+    };
+
     fetchVideos = async () => {
-        const {page, pageSize,title} = this.state;
+        const {title,page, pageSize} = this.state;
         this.setState({loading:true},async ()=>{
-            const result = await serchVideo(title);
-            if (result.success) {
-                const {videos, page, totalVideos, pages} = result.payload;
-                this.setState({
-                    loading: false,
-                    videos: videos || [],
-                    page: page+1,
-                    totalVideos: totalVideos,
-                    pages: pages,
-                })
+            if(title === "popular"){
+                const result = await getPopular(page - 1, pageSize,title);
+                if (result.success) {
+                    this.setPages(result)
+                }
+            }else{
+                const result = await searchVideo(title);
+                if (result.success) {
+                    this.setPages(result)
+                }
             }
         });
 

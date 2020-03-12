@@ -462,6 +462,11 @@ body.video-react-full-window .video-react-fullscreen {
     border-top-color: #73859f;
   }
 }
+
+.customColor{
+  color:white
+}
+
 @-webkit-keyframes video-react-spinner-fade {
   0% {
     border-top-color: #73859f;

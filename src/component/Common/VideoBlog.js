@@ -38,7 +38,7 @@ class VideoBlog extends React.Component{
                                         <div className="row">
                                             <div className="col-md-12">
                                                 <div className="main-title">
-                                                    <h6>{value.title}</h6>
+                                                    <h6 className="customColor">{value.title}</h6>
                                                 </div>
                                             </div>
                                             { value.data.map(v => (

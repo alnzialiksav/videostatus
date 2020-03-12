@@ -24,7 +24,7 @@ class App extends Component{
                                         <route.component {...props} />
                                     )}
                                  />
-                            ) : (null);
+                            ) : null;
                         })}
                         <Redirect from="/" to="/" />
                     </Switch>

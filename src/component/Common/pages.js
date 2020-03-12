@@ -16,9 +16,8 @@ class Pages  extends Component{
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="main-title">
-                                            <div className="btn-group float-right right-action">
-                                            </div>
-                                            <h6>{title.toUpperCase()}</h6>
+                                            <div className="btn-group float-right right-action"/>
+                                            <h6 className="customColor">{title.toUpperCase()}</h6>
                                         </div>
                                     </div>
                                     {

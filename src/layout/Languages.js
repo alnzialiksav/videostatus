@@ -56,7 +56,7 @@ class Languages extends React.Component {
            <div className="top-category section-padding mb-4">
                <div className="row">
                    <div className="col-md-12">
-                       <div className="main-title">
+                       <div className="main-title customColor">
                            <h6>Language</h6>
                        </div>
                    </div>
