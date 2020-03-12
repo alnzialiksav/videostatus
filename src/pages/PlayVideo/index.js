@@ -4,7 +4,6 @@ import  SelectVideo  from "./selectVideo";
 
 export class PlayVideo extends React.Component {
     render() {
-        console.log(this.props)
         return(
             <div className="video-block section-padding">
                 <div className="row">

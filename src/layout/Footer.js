@@ -7,13 +7,8 @@ const Footer = () => {
                 <div className="container">
                     <div className="row no-gutters">
                         <div className="col-lg-6 col-sm-6">
-                            <p className="mt-1 mb-0">&copy; Copyright 2019 <strong
+                            <p className="mt-1 mb-0">&copy; Copyright 2020 <strong
                                 className="text-dark">Vidoe</strong>. All Rights Reserved<br/>
-                                <small className="mt-0 mb-0">Made with <i
-                                    className="fas fa-heart text-danger"/> by
-                                    <a className="text-primary" target="_blank" href="/">Ask
-                                    Bootstrap</a>
-                                </small>
                             </p>
                         </div>
                         <div className="col-lg-6 col-sm-6 text-right">
@@ -29,6 +24,9 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
+            <a className="scroll-to-top rounded" id="scrollToTop">
+                <i className="fas fa-angle-up"/>
+            </a>
         </>
     )
 };

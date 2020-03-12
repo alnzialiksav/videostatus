@@ -23,7 +23,7 @@ class Pages  extends Component{
                                     </div>
                                     {
                                         videos.map ((v,i) => (
-                                            <div key={i} className="col-xl-3 col-sm-6 mb-3">
+                                            <div key={i} className="col-xl-2 col-sm-6 mb-3">
                                                 <div title={v.title} className="video-card">
                                                     <div className="video-card-image">
                                                         <Link to ={`/watch/${v._id}`} className="play-icon">
@@ -42,7 +42,7 @@ class Pages  extends Component{
                                                     </div>
                                                     <div className="video-card-body">
                                                         <div className="video-title">
-                                                            <Link to ={`/watch/${v._id}`}>{v.title}</Link>
+                                                            <Link to ={`/watch/${v._id}`} style={{color:"white"}}>{v.title}</Link>
                                                         </div>
                                                         <div className="video-page text-success">
                                                             {v.language}
@@ -50,9 +50,6 @@ class Pages  extends Component{
                                                                 <i className="fas fa-check-circle text-success" />
                                                             </a>
                                                         </div>
-                                                        <div className="video-view">
-                                                            <i className="fa fa-download" aria-hidden="true" />&nbsp;{v.download}&nbsp;&nbsp;&nbsp;
-                                                            <i className="fas fa-calendar-alt" />&nbsp;{v.date}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -60,12 +57,12 @@ class Pages  extends Component{
                                         )
                                     }
                                 </div>
-                                <nav aria-label="Page navigation example">
-                                    <ul className="pagination justify-content-center pagination-sm mb-0">
-                                        <li className="page-item active"><a className="page-link" href="https://www.fullscreenvideostatus.com/Jennifer-Winget/1">1</a></li>
-                                    </ul>
-                                    <br />
-                                </nav>
+                                {/*<nav aria-label="Page navigation example">*/}
+                                {/*    <ul className="pagination justify-content-center pagination-sm mb-0">*/}
+                                {/*        <li className="page-item active"><a className="page-link" href="https://www.fullscreenvideostatus.com/Jennifer-Winget/1">1</a></li>*/}
+                                {/*    </ul>*/}
+                                {/*    <br />*/}
+                                {/*</nav>*/}
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,7 @@ class WhatsAppVideoStatus  extends React.Component {
     render() {
         const {title, _id, path, language, download, date, thumbnail, bgImage, i} = this.props
         return(
-            <div key={i} className="col-xl-3 col-sm-6 mb-3">
+            <div key={i} className="col-xl-2 col-sm-6 mb-3">
                 <div title={title} className="video-card">
                     <div className="video-card-image">
                         <Link to={`/watch/${_id}`} className="play-icon" href={path}>
@@ -34,10 +34,6 @@ class WhatsAppVideoStatus  extends React.Component {
                                 <i className="fas fa-check-circle text-success"/>
                             </a>
                         </div>
-                        <div className="video-view">
-                            <i className="fa fa-download"
-                               aria-hidden="true"/>&nbsp;{download}&nbsp;&nbsp;&nbsp;
-                            <i className="fas fa-calendar-alt"/>&nbsp;{date}</div>
                     </div>
                 </div>
             </div>

@@ -2,8 +2,8 @@ import React from "react"
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Pages from "../../component/Common/pages";
-import {getVideos} from "../../actions";
-import {Loader} from "../../globalutilities/Loader";
+import { serchVideo } from "../../actions";
+import { Loader } from "../../globalutilities/Loader";
 
 
 class Categories extends React.Component {
@@ -21,6 +21,7 @@ class Categories extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.state.title)
         this.fetchVideos();
         this.prev = window.scrollY;
         window.addEventListener('scroll', e => this.handleScroll(e));
@@ -41,11 +42,11 @@ class Categories extends React.Component {
     };
 
     fetchVideos = async () => {
-        const {page, pageSize} = this.state;
+        const {page, pageSize,title} = this.state;
         this.setState({loading:true},async ()=>{
-            const result = await getVideos(page-1, pageSize);
+            const result = await serchVideo(title);
             if (result.success) {
-                const {videos, page, totalVideos, pages} = result.payload
+                const {videos, page, totalVideos, pages} = result.payload;
                 this.setState({
                     loading: false,
                     videos: videos || [],

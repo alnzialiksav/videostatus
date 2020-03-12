@@ -1,19 +1,20 @@
 import React from "react"
+import {Link} from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
 const List = [
-    {path:"https://www.fullscreenvideostatus.com/hindi-status-video-song",img:"",type:"हिंदी",english:"Hindi"},
-    {path:"https://www.fullscreenvideostatus.com/punjabi-video-status-for-whatsapp",img:"",type:"ਪੰਜਾਬੀ",english:"Punjabi"},
-    {path:"https://www.fullscreenvideostatus.com/gujarati-status-video-download",img:"",type:"ગુજરાતી",english:"Gujarati"},
-    {path:"https://www.fullscreenvideostatus.com/marathi-status-video-song-download",img:"",type:"मराठी",english:"Marathi"},
-    {path:"https://www.fullscreenvideostatus.com/tamil-status-videos-download",img:"",type:"தமிழ்",english:"Tamil"},
-    {path:"https://www.fullscreenvideostatus.com/kannada-status-videos",img:"",type:"ಕನ್ನಡ",english:"Kannada"},
-    {path:"https://www.fullscreenvideostatus.com/telugu-whatsapp-status-videos",img:"",type:"తెలుగు",english:"Telugu"},
-    {path:"https://www.fullscreenvideostatus.com/bhojpuri-status-videos-download",img:"",type:"भोजपुरी",english:"Bhojpuri"},
-    {path:"https://www.fullscreenvideostatus.com/haryanvi-whatsapp-video",img:"",type:"हरयाणवी",english:"Haryanvi"},
+    {path:"/hindi",img:"",type:"हिंदी",english:"Hindi"},
+    {path:"/punjabi",img:"",type:"ਪੰਜਾਬੀ",english:"Punjabi"},
+    {path:"/",img:"",type:"ગુજરાતી",english:"Gujarati"},
+    {path:"/",img:"",type:"मराठी",english:"Marathi"},
+    {path:"/",img:"",type:"தமிழ்",english:"Tamil"},
+    {path:"/",img:"",type:"ಕನ್ನಡ",english:"Kannada"},
+    {path:"/",img:"",type:"తెలుగు",english:"Telugu"},
+    {path:"/",img:"",type:"भोजपुरी",english:"Bhojpuri"},
+    {path:"/",img:"",type:"हरयाणवी",english:"Haryanvi"},
 ];
 
 class Languages extends React.Component {
@@ -22,7 +23,7 @@ class Languages extends React.Component {
            infinite: true,
            autoplay:true,
            autoplaySpeed:1500,
-           speed: 800,
+           speed: 1000,
            slidesToShow: 8,
            responsive: [
                {
@@ -50,7 +51,7 @@ class Languages extends React.Component {
                }
            ]
 
-       }
+       };
        return(
            <div className="top-category section-padding mb-4">
                <div className="row">
@@ -66,11 +67,11 @@ class Languages extends React.Component {
                                    List.map((v,i)=>(
                                        <div key={i} className="item">
                                            <div className="category-item">
-                                               <a href={v.path}>
+                                               <Link to={v.path}>
                                                    {/*<img className="img-fluid" src={v.img} alt=""/>*/}
-                                                   <h6>{v.type}</h6>
+                                                   <h6 style={{color:"black"}}>{v.type}</h6>
                                                    <p>{v.english}</p>
-                                               </a>
+                                               </Link>
                                            </div>
                                        </div>
                                    ))

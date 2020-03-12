@@ -13,8 +13,13 @@ class VideoBlog extends React.Component{
     componentDidMount() {
         if(this.props.history && this.props.history.location.pathname){
             const path = this.props.history.location.pathname.split("/") || "";
-            const findCategory = category.filter(v=>v.title === path[2]);
-            this.setState({list:findCategory})
+            if(path[2] === "all"){
+                this.setState({list:category})
+            }else {
+                const findCategory = category.filter(v=>v.title === path[2]);
+                this.setState({list:findCategory})
+            }
+
         }
     }
 

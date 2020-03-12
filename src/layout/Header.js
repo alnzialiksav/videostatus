@@ -1,6 +1,5 @@
 import React from "react"
 import {serchVideo} from '../actions'
-import {Redirect} from 'react-router-dom'
 const queryString = require('query-string');
 
 
@@ -11,12 +10,10 @@ const categories = [
 ];
 const BottomNav = [
     {path:"/",icon:"fas fa-home",name:"Home"},
-    {path:"/",icon:"fas fa-clock",name:"New"},
-    {path:"/",icon:"fas fa-fire",name:"Popular"},
-    {path:"/",icon:"fas fa-th-large",name:"Category"}
+    {path:"?tag=new",icon:"fas fa-clock",name:"New"},
+    {path:"/?tag=",icon:"fas fa-fire",name:"Popular"},
+    {path:"/category/all",icon:"fas fa-th-large",name:"Category"}
 ];
-
-
 
 class Header extends React.Component {
     constructor(props) {
@@ -28,7 +25,9 @@ class Header extends React.Component {
     }
 
     componentDidMount() {
-        const search = queryString.parse(( this.props &&  this.props.history && this.props.history.location.search) || '');
+        const search = queryString.parse(
+            (this.props &&  this.props.history && this.props.history.location.search) || ''
+        );
         this.setState({
             tag: search.tag
         })
@@ -38,7 +37,7 @@ class Header extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         })
-    }
+    };
 
     onEnter = async(event) => {
         const {tag} = this.state;
@@ -86,13 +85,13 @@ class Header extends React.Component {
                     <ul className="navbar-nav ml-auto ml-md-0 osahan-right-navbar">
                         <li className="nav-item dropdown no-arrow mx-1">
                             <a
-                                className="nav-link dropdown-toggle"
+                                className="nav-link dropdown-toggle hov-pointer"
                                 id="alertsDropdown"
                                 role="button"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
-                                style={{background:"transparent",color:"white", borderRadius: "19px"}}
+                                style={{background:"transparent",color:"white", borderRadius: "19px",cursor: "pointer"}}
                             >
                                 {
                                     path  === "Popular category's"
@@ -112,7 +111,6 @@ class Header extends React.Component {
                                             key={index}
                                             href={`/category/${item}`}
                                             className="dropdown-item"
-                                            style={{color:"white"}}
                                         >
                                             &nbsp; {item}
                                         </a>

@@ -1,7 +1,7 @@
 import React from "react"
 import {getVideos} from "../../actions";
 import {Loader} from "../../globalutilities/Loader";
-
+import {Link} from "react-router-dom";
 
 class Gallery extends React.Component{
     constructor(props){
@@ -59,7 +59,6 @@ class Gallery extends React.Component{
         const { videos,loading }  = this.state;
         return(
             <div className="single-video-right">
-                { loading ?  <Loader/>  : null }
                 <div className="row">
                     <div className="col-md-12">
                         <div className="adblock">
@@ -75,34 +74,36 @@ class Gallery extends React.Component{
                         </div>
                     </div>
                     <div className="col-md-12">
+                        { loading ?  <Loader left="60%"/>  : null }
                         {
                             videos.map((v,i) =>(
-                                <div key={i} className="video-card video-card-list">
+                                <div key={i} className="video-card video-card-list" style={{border:"0px"}}>
                                     <div className="video-card-image">
-                                        <a href ={`/watch/${v._id}`} className="play-icon">
+                                        <Link to ={`/watch/${v._id}`} className="play-icon">
                                             <i className="fas fa-play-circle"/>
-                                        </a>
-                                        <a href ={`/watch/${v._id}`} >
+                                        </Link>
+                                        <Link to ={`/watch/${v._id}`} >
                                             <img
                                                 style={{
                                                     height: '100%',
                                                     objectFit: 'contain',
+                                                    border:"1px white solid",
                                                     // background: `linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,1)) no-repeat, ${v.bgImage}`,
                                                     backgroundSize: 'auto 25em'
                                                 }} className="img-fluid"
                                                 src={v.thumbnail}
                                                 alt=""
                                             />
-                                        </a>
+                                        </Link>
                                         <div className="time"/>
                                     </div>
                                     <div className="video-card-body">
                                         <div className="btn-group float-right right-action">
                                         </div>
                                         <div className="video-title">
-                                            <a href ={`/watch/${v._id}`}>
+                                            <Link to ={`/watch/${v._id}`}>
                                                 {v.title}
-                                            </a>
+                                            </Link>
                                         </div>
                                         <div className="video-page text-success">
                                             {v.language}

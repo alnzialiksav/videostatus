@@ -14,34 +14,51 @@ class WhatsAppVideo extends React.Component {
             totalVideos: 0,
             pages: 0,
             pageSize: 10,
-            list: []
+            list: [],
+            scrollLength:0
         }
     }
 
     async componentDidMount() {
         const search = this.props.location.search.split("=").pop()
-        const result = await serchVideo(search)
-        this.fetchVideos();
-        this.prev = window.scrollY;
-        window.addEventListener('scroll', e => this.handleScroll(e));
-        this.setState({
-            list: result.payload.videos || []
+        this.setState({loaded:true},async ()=>{
+            this.fetchVideos();
+            const result = await serchVideo(search);
+            if(result && result.payload && result.payload.videos.length){
+                this.setState({
+                    list: result.payload && result.payload.videos || []
+                })
+            }
+            this.prev = window.scrollY;
+            window.addEventListener('scroll', e => this.handleScroll(e));
+
         })
+
     }
 
-    async componentDidUpdate(prevProps, prevState) {
-        const search = prevProps.location.search.split("=").pop()
-        const result = await serchVideo(search)
-        this.setState({
-            list: result.payload.videos || []
-        })
+    async componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.location.search !== this.props.location.search){
+            const search = this.props.location.search.split("=").pop()
+            this.fetchVideos();
+            const result = await serchVideo(search)
+            if(result && result.payload && result.payload.videos.length){
+                this.setState({
+                    list: result.payload && result.payload.videos || []
+                })
+            }
+            this.prev = window.scrollY;
+            window.addEventListener('scroll', e => this.handleScroll(e));
+            this.setState({
+                list: result.payload.videos || []
+            })
+        }
     }
-
     handleScroll = (e) => {
         const window = e.currentTarget;
         if (this.prev < window.scrollY) {
-            if (window.scrollY > 300) {
+            if (window.scrollY > this.state.scrollLength) {
                 this.setState({
+                    scrollLength:window.scrollY,
                     pageSize: this.state.pageSize + 5
                 }, () => {
                     this.fetchVideos();
@@ -72,8 +89,6 @@ class WhatsAppVideo extends React.Component {
 
     render() {
         const {videos, loaded, list} = this.state;
-        console.log("videos", videos)
-        console.log("videos", list)
         return (
             <>
                 <Languages/>
@@ -86,6 +101,7 @@ class WhatsAppVideo extends React.Component {
                     website for the latest status.
                 </div>
                 <hr/>
+                {loaded ? <Loader/> : null}
                 <div className="video-block section-padding">
                     <div className="row">
                         <div className="col-md-12">
@@ -95,7 +111,6 @@ class WhatsAppVideo extends React.Component {
                                 <h6>Best whatsapp video Status</h6>
                             </div>
                         </div>
-                        {loaded ? <Loader/> : null}
                         {
                             list && list.length ? list.map((v, i) => (
                                 <WhatsAppVideoStatus

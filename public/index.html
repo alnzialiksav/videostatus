@@ -56,7 +56,18 @@
 
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
+<!--    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>/-->
+    <script type = "text/javascript">
+      setTimeout(() => {
+        $(function () {
+          $('#scrollToTop').bind("click", function () {
+            $('html, body').animate({ scrollTop: 0 }, 1200);
+            return false;
+          });
+        });
+      }, 1000);
 
+    </script>
     <script src='/assets/js/video.js'></script>
     <script src="/assets/js/custom.js"></script>
   </body>

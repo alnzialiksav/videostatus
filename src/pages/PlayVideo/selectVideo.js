@@ -1,6 +1,7 @@
 import React from "react";
 import { findVideoById } from "../../actions"
 import { Player } from 'video-react';
+
 class SelectVideo extends React.Component{
     constructor(props){
         super(props);
@@ -18,6 +19,16 @@ class SelectVideo extends React.Component{
             await this.fetVideo()
         })
     }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevState._id !== this.props.location.pathname.split("/")[2]){
+            const path = this.props.location.pathname.split("/");
+            this.setState({_id:path[2]},async()=>{
+                await this.fetVideo()
+            })
+        }
+    }
+
     fetVideo =  async () => {
         const { _id } = this.state;
         const res = await findVideoById(_id);
@@ -38,7 +49,6 @@ class SelectVideo extends React.Component{
     };
     render() {
         const { tag, videoData, videoId, type } = this.state;
-        {console.log(videoId)}
         return(
             <div className="single-video-left">
                 <div className="single-video">
